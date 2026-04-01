@@ -1,0 +1,25 @@
+schema_id: alpana/run-manifest
+schema_version: v0alpha1
+
+id: repo_delivery_readme_rewrite_example
+bubble_id: repo_delivery_default
+objective: rewrite README and docs entrypoints to match current doctrine
+decision_class: local
+
+inputs:
+  target_paths:
+    - README.md
+    - docs/README.md
+  acceptance_criteria:
+    - doctrine_aligned
+    - no_scope_expansion
+    - checks_reported
+    - provenance_recorded
+
+constraints:
+  - do_not_change_kernel_terms
+  - escalate_if_schema_or_contract_changes_are_needed
+
+expected_outputs:
+  - updated_markdown
+  - validation_report
