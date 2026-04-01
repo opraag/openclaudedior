@@ -1,0 +1,56 @@
+schema_id: alpana/retrieval-profile
+schema_version: v0alpha1
+
+retrieval_profile_id: repo_delivery
+name: Repo Delivery Retrieval
+
+sources:
+  - id: repo_files
+    type: local_repo
+    priority: 1
+  - id: repo_docs
+    type: local_repo_docs
+    priority: 2
+  - id: pr_context
+    type: pull_request_context
+    priority: 3
+  - id: external_docs
+    type: external_web
+    priority: 4
+
+artifact_preferences:
+  - readme
+  - docs
+  - contracts
+  - workflows
+  - source_files
+
+freshness_bias:
+  repo_files: current_branch
+  external_docs: latest_stable
+
+permission_filtering:
+  required: true
+  deny_unknown_sources: true
+
+max_results:
+  repo_search: 20
+  external_search: 10
+
+dedupe:
+  enabled: true
+  key_fields:
+    - path
+    - title
+
+summarization_mode:
+  style: evidence_first
+  preserve_paths: true
+
+citation_required: true
+
+fallback_sequence:
+  - repo_files
+  - repo_docs
+  - pr_context
+  - external_docs
