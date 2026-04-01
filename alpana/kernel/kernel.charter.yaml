@@ -1,0 +1,102 @@
+schema_id: alpana/kernel-charter
+schema_version: v0alpha1
+
+id: kernel
+name: Alpana Kernel
+status: active
+
+purpose: >
+  Canonical logic center for meaning, ontology, DIKW interpretation,
+  registry meaning, and attachment rules.
+
+owns:
+  - primitives
+  - ontology
+  - dikw_interpretation
+  - stack_legibility
+  - registry_meaning
+  - module_attachment_rules
+
+does_not_own:
+  - local_implementation_details
+  - provider_specific_logic
+  - temporary_run_instructions
+  - bubble_local_optimizations
+
+truth_model:
+  canonical_layers:
+    - kernel
+    - governance
+    - domain
+  local_layers:
+    - bubble
+    - run
+  derived_layers:
+    - rollups
+    - summaries
+    - scores
+    - health_views
+  runtime_rule: runtime_surfaces_never_become_shared_truth_automatically
+
+object_families:
+  structural:
+    - bubble
+    - circle
+    - foam
+    - perspective
+    - relation
+    - boundary
+    - state
+    - transition
+  governance:
+    - proposal
+    - requirement
+    - decision
+    - approval
+    - exception
+    - contract
+  operational:
+    - module
+    - service
+    - agent
+    - integration
+    - runtime_slice
+    - environment
+    - adapter
+
+workflow_families:
+  - kernel_foundation
+  - module_intake
+  - requirement_gap
+  - fork_and_adaptation
+  - change_and_integration
+  - promotion
+  - compliance_and_exception
+  - health_and_strategic_reporting
+  - kernel_assurance
+  - module_offload
+
+registry_map:
+  canonical:
+    - primitive_registry
+    - ontology_registry
+    - domain_registry
+    - attachment_registry
+  governance:
+    - requirement_registry
+    - proposal_registry
+    - decision_registry
+    - exception_registry
+    - contract_registry
+  runtime:
+    - module_registry
+    - service_registry
+    - integration_registry
+    - adapter_registry
+    - agent_registry
+    - environment_registry
+  derived:
+    - health_views
+    - rollups
+    - scorecards
+    - summaries
