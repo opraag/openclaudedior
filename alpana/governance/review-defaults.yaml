@@ -1,0 +1,36 @@
+schema_id: alpana/review-defaults
+schema_version: v0alpha1
+
+decision_class_defaults:
+  local:
+    nana_default: false
+    human_review_default: false
+    approval_mode: self-contained
+    promotion_candidate: false
+
+  structural:
+    nana_default: true
+    human_review_default: conditional
+    approval_mode: explicit
+    promotion_candidate: true
+
+  critical:
+    nana_default: true
+    human_review_default: true
+    approval_mode: dual-control
+    promotion_candidate: false
+
+  constitutional:
+    nana_default: true
+    human_review_default: true
+    approval_mode: constitutional
+    promotion_candidate: false
+
+escalation_triggers:
+  - changes_kernel_meaning
+  - changes_domain_ownership
+  - changes_schema_or_contract
+  - accesses_new_sensitive_source
+  - irreversible_write
+  - external_side_effect
+  - production_runtime_change
