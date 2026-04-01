@@ -1,0 +1,51 @@
+schema_id: alpana/runtime-profile
+schema_version: v0alpha1
+
+profile_id: repo_delivery
+name: Repo Delivery
+purpose: bounded repo reading, editing, checking, and reporting
+
+provider_preference:
+  order:
+    - local_openai_compatible
+    - codex_compatible
+    - openai_compatible
+  allow_provider_adapter: true
+
+model_selection:
+  default_goal: coding
+  fast_goal: latency
+  fallback_goal: balanced
+
+thinking_mode:
+  depth: medium
+  interleaved: false
+  auto_compact: false
+
+memory_mode:
+  local_run_memory: true
+  auto_promote: false
+  cross_bubble_memory: false
+
+tool_mode:
+  filesystem_write: true
+  network_read: gated
+  destructive_ops: blocked_by_default
+
+write_policy:
+  default: patch_first
+  direct_main_write: false
+
+governance_overrides:
+  default_decision_class: local
+  escalate_on:
+    - schema_change
+    - contract_change
+    - ci_workflow_change
+    - secrets_touch
+
+doctor_checks_required:
+  - provider_reachable
+  - runtime_healthy
+  - workspace_writable
+  - test_surface_known
