@@ -1,0 +1,35 @@
+schema_id: alpana/decision-classes
+schema_version: v0alpha1
+
+classes:
+  local:
+    description: bounded within one bubble and reversible
+    requires_nana_review: false
+    requires_human_review: false
+    allows_write_actions: true
+    allows_boundary_change: false
+    allows_schema_change: false
+
+  structural:
+    description: changes bubble boundaries, schemas, contracts, workflows, or ownership
+    requires_nana_review: true
+    requires_human_review: conditional
+    allows_write_actions: true
+    allows_boundary_change: true
+    allows_schema_change: true
+
+  critical:
+    description: high-impact external actions, irreversible changes, sensitive permissions, production effects
+    requires_nana_review: true
+    requires_human_review: true
+    allows_write_actions: gated
+    allows_boundary_change: true
+    allows_schema_change: true
+
+  constitutional:
+    description: changes kernel meaning, core ontology, governance doctrine, or canonical registry semantics
+    requires_nana_review: true
+    requires_human_review: true
+    allows_write_actions: gated
+    allows_boundary_change: true
+    allows_schema_change: true
