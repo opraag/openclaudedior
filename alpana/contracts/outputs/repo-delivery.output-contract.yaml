@@ -1,0 +1,44 @@
+schema_id: alpana/output-contract
+schema_version: v0alpha1
+
+output_contract_id: repo_delivery
+name: Repo Delivery Output Contract
+
+accepted_types:
+  - patch_bundle
+  - updated_markdown
+  - updated_yaml
+  - validation_report
+  - pull_request_note
+
+required_metadata:
+  - source_paths
+  - change_summary
+  - decision_class
+  - checks_run
+  - checks_result
+  - provenance
+
+citation_policy:
+  required_for:
+    - factual_claims
+    - external_references
+    - repo_state_claims
+
+promotion_candidate_rules:
+  eligible_when:
+    - repeated_pattern
+    - stable_field_shape
+    - reusable_across_bubbles
+
+rejection_rules:
+  - missing_provenance
+  - unresolved_failed_checks
+  - out_of_scope_changes
+  - hidden_side_effects
+
+storage_targets:
+  local:
+    - repo_files
+  reports:
+    - reports/
