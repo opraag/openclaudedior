@@ -1,0 +1,61 @@
+schema_id: alpana/domain-charter
+schema_version: v0alpha1
+
+id: delivery
+name: Delivery Domain
+status: active
+
+mission: >
+  Deliver bounded, governed change to repos, packages, docs, CI/CD surfaces,
+  and implementation artifacts without collapsing kernel and governance layers.
+
+kernel_attachments:
+  - bubble
+  - circle
+  - contract
+  - workflow
+  - module
+  - agent
+
+owned_outcomes:
+  - repo_changes
+  - docs_updates
+  - contract_updates
+  - ci_hardening
+  - release_readiness
+
+standard_bubble_types:
+  - repo_delivery
+  - docs_rewrite
+  - contract_upgrade
+  - ci_hardening
+  - release_prep
+
+adjacent_domains:
+  - governance
+  - knowledge
+  - infrastructure
+
+default_metrics:
+  leading:
+    - checks_passed_rate
+    - diff_reversibility
+    - contract_conformance
+  lagging:
+    - merged_change_success
+    - rollback_rate
+    - rework_rate
+
+governance_defaults:
+  decision_class_default: local
+  escalate_on:
+    - schema_change
+    - contract_change
+    - ownership_change
+    - production_side_effect
+
+shared_outputs:
+  - pull_request
+  - patch_bundle
+  - updated_docs
+  - validation_report
