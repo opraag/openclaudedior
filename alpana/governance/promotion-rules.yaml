@@ -1,0 +1,30 @@
+schema_id: alpana/promotion-rules
+schema_version: v0alpha1
+
+promotion_paths:
+  - from: run
+    to: bubble_memory
+  - from: bubble_memory
+    to: domain_reusable
+  - from: domain_reusable
+    to: canonical_registry
+
+requirements:
+  bubble_to_domain_reusable:
+    - repeated_value
+    - stable_contract
+    - evidence_attached
+    - scope_is_generalizable
+  domain_reusable_to_canonical:
+    - kernel_alignment
+    - governance_approval
+    - domain_approval
+    - no_term_conflict
+    - canonical_owner_assigned
+
+rejection_conditions:
+  - provider_specific_hack
+  - local_context_dependency
+  - missing_provenance
+  - unstable_output_shape
+  - unresolved_exception
