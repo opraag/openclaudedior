@@ -1,0 +1,58 @@
+schema_id: alpana/toolset
+schema_version: v0alpha1
+
+toolset_id: repo_delivery
+name: Repo Delivery Toolset
+
+visible_tools:
+  - filesystem
+  - git
+  - search
+  - test_runner
+  - diff
+  - markdown_editor
+
+enabled_tools:
+  - read_file
+  - write_file
+  - search_repo
+  - run_tests
+  - inspect_diff
+  - create_patch_bundle
+
+commands:
+  - rg
+  - git status
+  - git diff
+  - npm test
+  - bun test
+  - python -m pytest
+
+write_capabilities:
+  allowed:
+    - docs
+    - markdown
+    - yaml
+    - source_files_in_scope
+  blocked:
+    - secrets
+    - credentials
+    - deployment_targets
+
+filesystem_scope:
+  mode: bounded
+  allowed_roots:
+    - repo_root
+
+network_access:
+  mode: read_only_gated
+
+blocked_operations:
+  - force_push
+  - secret_exfiltration
+  - delete_repo
+  - direct_prod_deploy
+
+error_policy:
+  on_tool_failure: stop_and_report
+  on_ambiguous_write: escalate
