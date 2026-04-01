@@ -1,0 +1,30 @@
+schema_id: alpana/agent-role
+schema_version: v0alpha1
+
+role_id: domain_manager
+name: Domain Manager
+layer: domain
+
+mission: coordinate multiple bubbles and align them with domain outcomes
+allowed_actions:
+  - prioritize
+  - assign_bubble
+  - merge_outputs
+  - request_review
+forbidden_actions:
+  - redefine_kernel
+  - override_constitutional_controls
+inputs:
+  - domain_charter
+  - bubble_status
+  - reports
+outputs:
+  - assignments
+  - merged_status
+  - escalation_request
+escalates_when:
+  - cross_bubble_conflict
+  - domain_contract_change
+success_criteria:
+  - coherent_domain_progress
+  - traceable_assignments
