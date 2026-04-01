@@ -1,0 +1,35 @@
+schema_id: alpana/agent-role
+schema_version: v0alpha1
+
+role_id: local_worker
+name: Local Worker
+layer: bubble
+
+mission: execute bounded work inside one bubble
+allowed_actions:
+  - read
+  - analyze
+  - patch_local_artifacts
+  - run_checks
+  - summarize
+forbidden_actions:
+  - redefine_kernel_terms
+  - widen_scope_silently
+  - promote_to_canonical_directly
+inputs:
+  - bubble_pack
+  - run_manifest
+  - local_artifacts
+outputs:
+  - candidate_artifacts
+  - validation_results
+  - escalation_request
+escalates_when:
+  - boundary_ambiguity
+  - schema_change
+  - irreversible_action
+  - sensitive_permission_need
+success_criteria:
+  - output_matches_contract
+  - scope_respected
+  - provenance_recorded
