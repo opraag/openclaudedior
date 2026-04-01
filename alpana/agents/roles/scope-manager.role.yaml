@@ -1,0 +1,31 @@
+schema_id: alpana/agent-role
+schema_version: v0alpha1
+
+role_id: scope_manager
+name: Scope Manager
+layer: bubble
+
+mission: classify what belongs and protect against scope bleed
+allowed_actions:
+  - classify
+  - reject_out_of_scope
+  - route_to_adjacent_bubble
+  - require_escalation
+forbidden_actions:
+  - silently_rewrite_scope
+  - bypass_governance
+inputs:
+  - bubble_pack
+  - run_manifest
+  - candidate_action
+outputs:
+  - scope_decision
+  - escalation_request
+escalates_when:
+  - parent_boundary_change
+  - adjacent_context_conflict
+  - ownership_ambiguity
+success_criteria:
+  - clean_scope_boundary
+  - minimal_noise
+  - explicit_routing
