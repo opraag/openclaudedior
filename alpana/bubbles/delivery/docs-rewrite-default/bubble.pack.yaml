@@ -1,0 +1,163 @@
+schema_id: alpana/bubble-pack
+schema_version: v0alpha1
+
+id: docs_rewrite_default
+name: Docs Rewrite Default
+status: active
+bubble_type: docs_rewrite
+
+mission: >
+  Rewrite and improve documentation files (markdown, YAML contracts, and metadata)
+  within a repository while respecting kernel meaning, governance policies and
+  domain boundaries. This bubble focuses on improving clarity, compliance,
+  and accessibility of existing documentation without altering underlying code.
+
+scope:
+  in:
+    - read_repository_state
+    - update_markdown_docs
+    - correct_contract_headers
+    - standardize_yaml_docs
+    - run_documentation_checks
+    - summarise_changes_with_provenance
+  out:
+    - modify_source_code
+    - redefine_kernel_terms
+    - change_schema_definitions
+    - handle_credentials
+    - execute_production_deployments
+    - silent_scope_expansion
+  parent_circle: delivery
+  parent_bubble: null
+  adjacent_contexts:
+    - governance
+    - knowledge
+    - infrastructure
+
+capabilities:
+  visible_tools:
+    - filesystem
+    - git
+    - repo_search
+    - markdown_editor
+    - diff
+  enabled_tools:
+    - read_file
+    - write_file
+    - search_repo
+    - inspect_diff
+    - create_patch_bundle
+  skills:
+    - docs_reading
+    - docs_editing
+    - contract_annotation
+    - patch_planning
+    - check_interpretation
+    - provenance_summary
+  commands:
+    - rg
+    - git status
+    - git diff
+    - markdownlint
+    - yamllint
+  local_agents:
+    - local_worker
+    - scope_manager
+    - reviewer
+  optional_services:
+    - ci_runner
+    - doc_style_checker
+
+artifacts:
+  produces:
+    - updated_docs
+    - updated_contracts
+    - validation_report
+    - patch_bundle
+    - pull_request_note
+  stores_in:
+    - repo_root
+    - reports/
+
+retrieval:
+  profile_ref: alpana/contracts/retrieval/repo-delivery.retrieval.yaml
+  overrides:
+    artifact_preferences:
+      - docs
+      - contracts
+      - readme
+    max_results:
+      repo_search: 40
+
+governance:
+  decision_class_default: local
+  nana_default: false
+  human_review_default: false
+  escalation_triggers:
+    - schema_change
+    - contract_change
+    - ownership_change
+    - sensitive_permission_need
+    - external_side_effect
+    - ambiguous_scope_boundary
+  inbound_contracts:
+    - bubble_accepts_run_manifest
+    - bubble_accepts_repo_context
+  outbound_contracts:
+    - repo_delivery_output_contract
+    - escalation_notice_contract
+
+runtime:
+  profile_ref: alpana/runtime/profiles/repo-delivery.profile.yaml
+  adapter_policy:
+    keep_internal_prompt_grammar_stable: true
+    provider_specific_logic_at_edge: true
+  doctor_required: true
+
+metrics:
+  leading:
+    - docs_scanned_count
+    - docs_updated_count
+    - reversible_change_ratio
+    - citation_coverage_ratio
+  lagging:
+    - merge_acceptance_rate
+    - rollback_rate
+    - rework_rate
+  health:
+    - scope_breach_count
+    - unresolved_failures_count
+    - escalation_count
+
+memory:
+  local_memory:
+    enabled: true
+    scope: bubble_only
+  promote_to:
+    - domain_reusable
+  retention:
+    successful_runs: 30d
+    failed_runs: 14d
+    promoted_patterns: permanent_until_review
+
+interfaces:
+  inputs:
+    - run_manifest
+    - repo_context
+    - target_paths
+    - acceptance_criteria
+  outputs:
+    - updated_docs
+    - validation_report
+    - patch_bundle
+    - escalation_request
+  adjacent_bubbles:
+    - governance.review
+    - knowledge.reference
+    - infrastructure.ci
+
+notes:
+  doctrine:
+    - keep_core_prompt_small
+    - place_behavior_in_profiles_contracts_and_checks
+    - do_not_promote_local_truth_without_governance
