@@ -1,0 +1,30 @@
+schema_id: alpana/run-manifest
+schema_version: v0alpha1
+
+id: docs_rewrite_example
+bubble_id: docs_rewrite_default
+objective: rewrite and standardise project documentation across README.md and docs/ while aligning with current doctrine
+decision_class: local
+
+inputs:
+  target_paths:
+    - README.md
+    - docs/
+    - contracts/
+  acceptance_criteria:
+    - consistent_header_format
+    - doctrine_alignment
+    - citation_attached
+    - no_scope_expansion
+    - checks_reported
+
+constraints:
+  - do_not_modify_source_code
+  - do_not_change_kernel_terms
+  - do_not_delete_contract_fields
+  - write_actions_must_be_reversible
+
+expected_outputs:
+  - updated_docs
+  - validation_report
+  - patch_bundle
